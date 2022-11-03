@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main id="app">
+      <div v-for="listing in peserta">
+        <div v-text="listing.nama"></div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js" integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        let app = new Vue({
+            el:'#app',
+            data(){
+                return {
+                    peserta:{},
+                }
+            },
+            methods:{
+                async fetchPeserta(){
+                    let response = await axios.get("http://127.0.0.1:8000/api/peserta");
+                    this.peserta = response.data.data;
+                    // console.log(response.data.data);
+                }
+            },
+            created(){
+                this.fetchPeserta();
+            }  
+
+        });
+    </script>
+</body>
+</html>

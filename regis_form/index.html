@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Registrasi Form Peserta | Sciencom</title>
+    <!-- Favicon-->
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="assets/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="assets/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+ 
+<body class="signup-page">
+    
+    <div class="signup-box">
+        <div class="logo">
+            <!-- <a href="javascript:void(0);">Admin<b>BSB</b></a>
+            <small>Admin BootStrap Based - Material Design</small> -->
+        </div>
+        
+        
+
+        <div class="card">
+            <div class="body">
+                <form id="sign_up" method="POST" id="setupform">
+                     
+                      <div class="msg">
+                        <img src="assets/images/sciencom.png" alt="">
+                       </div> 
+
+                       
+                    <div class="input-group"> 
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama">
+                        </div>
+                    </div>
+
+                    <div class="input-group"> 
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" placeholder="Tempat Lahir">
+                        </div>
+                    </div>
+
+                    <div class="input-group"> 
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="tanggal_lahir" id="tanggal_lahir" placeholder="Tanggal Lahir">
+                        </div>
+                    </div> 
+
+                    <div class="input-group"> 
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat">
+                        </div>
+                    </div> 
+                    
+                    <div class="input-group"> 
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="telp" id="telp" placeholder="Telp">
+                        </div>
+                    </div> 
+                    
+                    <div class="input-group"> 
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+                        </div>
+                    </div>
+
+                    <div class="input-group"> 
+                        <div class="form-line">
+                         <select name="id_instansi" id="id_instansi" class="form-control">
+                            <option value="" selected="selected">--Pilih Instansi--</option>
+                            <option value="1"> PT ABC</option>
+                            <option value="2"> PT Indo</option>
+                         </select>
+                        </div>
+                    </div>
+ 
+                    <button class="btn btn-block btn-lg bg-blue waves-effect" type="button" onclick="SimpanData();">SIGN UP</button>
+
+                
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Jquery Core Js -->
+    <script src="assets/plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="assets/plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="assets/plugins/node-waves/waves.js"></script>
+
+    <!-- Validation Plugin Js -->
+    <script src="assets/plugins/jquery-validation/jquery.validate.js"></script>
+
+    <!-- Custom Js -->
+    <script src="assets/js/admin.js"></script>
+    <script src="assets/js/pages/examples/sign-up.js"></script>
+
+    <script>
+        function SimpanData(){ 
+            var nama = $("#nama").val();
+            var tempat_lahir = $("#tempat_lahir").val();
+            var tanggal_lahir = $("#tanggal_lahir").val();
+            var alamat = $("#alamat").val();
+            var telp = $("#telp").val();
+            var email = $("#email").val();
+            var id_instansi = $("#id_instansi").val();
+            // var formData = new FormData($('#setupform')[0]); 
+            // var formData = $("#setupform").serialize();
+            // console.log(nama);
+            $.ajax({
+                url:"http://127.0.0.1:8000/api/peserta/store",
+                data : {nama:nama,tempat_lahir:tempat_lahir,tanggal_lahir:tanggal_lahir,alamat:alamat,telp:telp,email:email,id_instansi:id_instansi},
+                type:"POST", 
+                success:function(result){
+                    console.log(result);
+                }
+            });
+        }
+        
+    </script>
+</body>
+ 
+</html>
